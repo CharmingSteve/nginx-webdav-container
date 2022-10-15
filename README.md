@@ -1,15 +1,18 @@
 # Supported tags and respective `Dockerfile` links
 
--	[`latest` (*Dockerfile*)](https://github.com/sashgorokhov/docker-nginx-webdav/blob/master/Dockerfile)
+-	[`latest` (*Dockerfile*)](https://github.com/CharmingSteve/nginx-webdav-container/blob/master/Dockerfile)
 
-[![](https://badge.imagelayers.io/sashgorokhov/webdav:latest.svg)](https://imagelayers.io/?images=sashgorokhov/webdav:latest 'Get your own badge on imagelayers.io')
+[![](https://hub.docker.com/repository/docker/charmingsteve/nginxwebdav)](https://hub.docker.com/repository/docker/charmingsteve/nginxwebdav )
 
 # How to use this image
+Edit the docker-compose.yaml file, change the volume source to match your system.
+You can also password protect by uncommenting the lines for  `USERNAME` and `PASSWORD`
+ 
 
 ```console
-$ docker run --name webdav -p 80:80 -v /media:/media -d sashgorokhov/webdav
+$ docker compose up -d
 ```
-This will start a webdav server listening on the default port of 80.
+This will build and start a webdav server listening on the default port of 80.
 Then access it via `http://localhost:80` or `http://host:80` in a browser.
 
 This server will serve files located in your /media folder
@@ -17,10 +20,6 @@ This server will serve files located in your /media folder
 Image's supported volumes:
 - `/media` - served directory
 
-To restrict access to only authorized users, you can define two environment variables: `USERNAME` and `PASSWORD`
-```console
-$ docker run --name webdav -p 80:80 -v /media:/media -e USERNAME=webdav -e PASSWORD=webdav -d sashgorokhov/webdav
-```
 
 # Supported Docker versions
 
