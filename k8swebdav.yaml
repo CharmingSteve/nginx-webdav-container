@@ -38,17 +38,8 @@ spec:
       - name: movies
         hostPath:
           # directory location on host
-          path: /data
+          path: /media/steve/transcendTB/
           # this field is optional
           type: Directory
-    
-
-## Change this to use webdav image and MOUNT local volume 
-
-# /media/steve/transcendTB/
 
 #https://kubernetes.io/docs/concepts/storage/volumes/#hostpath  - mount local volume
-
-
-
-
