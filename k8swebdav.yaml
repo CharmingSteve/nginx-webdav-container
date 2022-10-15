@@ -1,0 +1,54 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: movieswebdav
+  annotations:
+spec:
+  ports:
+  - port: 80
+    targetPort: 80
+  selector:
+    app: movieswebdav
+  type: LoadBalancer
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: movieswebdav-deployment
+spec:
+  selector:
+    matchLabels:
+      app: movieswebdav
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: movieswebdav
+    spec:
+      containers:
+      - name: movieswebdav
+        image: charmingsteve/nginxwebdav
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - mountPath: /media
+          name: movies
+
+      volumes:
+      - name: movies
+        hostPath:
+          # directory location on host
+          path: /data
+          # this field is optional
+          type: Directory
+    
+
+## Change this to use webdav image and MOUNT local volume 
+
+# /media/steve/transcendTB/
+
+#https://kubernetes.io/docs/concepts/storage/volumes/#hostpath  - mount local volume
+
+
+
+
